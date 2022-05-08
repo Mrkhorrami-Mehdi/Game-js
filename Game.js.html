@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 100vw;
+            height: 100vh;
+            background-color: #252525;
+            overflow: hidden;
+        }
+        #nok {
+            background-color: white;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            clip-path: polygon(30% 100%, 50% 0, 70% 100%);
+            transform-origin: bottom;
+        }
+        .span {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            position: absolute;
+            top: 100%;
+            left: 52%;
+        }
+        .mn {
+            transition-property: top, left, opacity, transform;
+            transition-duration: 2s, 2s, 1s, 1s;
+            transition-delay: 0s, 0s, 1.8s, 1.8s;
+            transition-timing-function: ease-out
+        }
+    </style>
+</head>
+
+<body>
+    <div id="nok">
+
+    </div>
+</body>
+
+<script>
+    let y, temp, x1
+    let _body = document.getElementsByTagName('body')[0]
+    _body.addEventListener('mousemove', function (event) {
+        x = event.clientX
+        y = event.clientY
+        x = (x * 0.06) - 45
+        document.getElementById('nok').style.transform = 'rotate(' + x + 'deg)'
+    })
+    function para() {
+        temp = document.createElement('span')
+        temp.classList.add('span')
+        _body.appendChild(temp)
+    }
+    _body.addEventListener('click', function (event) {
+        x1 = event.clientX
+        para()
+        setTimeout(para1, 0.500)
+    })
+    function para1() {
+        temp.classList.add('mn')
+        temp.style.top = '' + y + 'px'
+        temp.style.left = '' + x1 + 'px'
+        temp.style.opacity = '0'
+        temp.style.transform = 'scale(5)'
+    }
+</script>
+
+</html>
